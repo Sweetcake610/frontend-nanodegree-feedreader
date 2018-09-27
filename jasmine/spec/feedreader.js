@@ -33,7 +33,6 @@ $(function() {
          */
 		it('all feeds are defined and have URL', function() {
 			for(let feed of allFeeds) {
-				//feed = this.url;
 				expect(feed.url).toBeDefined();
 				expect(feed.url).not.toBe(0);
 			}
@@ -43,6 +42,13 @@ $(function() {
          * in the allFeeds object and ensures it has a name defined
          * and that the name is not empty.
          */
+		 it('all feeds are defined and have name', function() {
+			for(let feedN of allFeeds) {
+				//feed = this.url;
+				expect(feedN.name).toBeDefined();
+				expect(feedN.name).not.toBe(0);
+			}
+		});
     });
 
 
