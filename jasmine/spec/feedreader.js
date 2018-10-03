@@ -97,12 +97,30 @@ $(function() {
 		it('there is at least a single feed entry', function() {
 			expect(feed.getElementsByClassName('entry-link').length).toBeGreaterThan(0);
 		});
+	});
 
     /* TODO: Write a new test suite named "New Feed Selection" */
-
-        /* TODO: Write a test that ensures when a new feed is loaded
+	describe('New Feed Selection', function () {
+		let initialFeed;
+		/* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
          */
+		beforeEach(function(done) {
+			loadFeed(0, function() {
+			initialFeed = document.querySelector('.feed').innerHTML;
+				
+			loadFeed(1, function() {
+				done();
+			});
+			
+			});
+		});
+		
+		it('new feed is loaded and content changed', function() {
+			let newFeed = document.querySelector('.feed').innerHTML;
+			
+			expect(newFeed).not.toBe(initialFeed);
+		});
 	});
 }());
