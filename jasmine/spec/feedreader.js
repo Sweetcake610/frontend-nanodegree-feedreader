@@ -108,19 +108,21 @@ $(function() {
          */
 		beforeEach(function(done) {
 			loadFeed(0, function() {
-			initialFeed = document.querySelector('.feed').innerHTML;
-				
-			loadFeed(1, function() {
-				done();
-			});
-			
-			});
+				initialFeed = document.querySelector('.feed').innerHTML;
+				loadFeed(1, function() {
+					done();
+					loadFeed(2, function() {
+						done();
+						loadFeed(3, function() {
+						 done();
+						});
+					});
+				});
+			});	
 		});
-		
 		it('new feed is loaded and content changed', function() {
 			let newFeed = document.querySelector('.feed').innerHTML;
-			
-			expect(newFeed).not.toBe(initialFeed);
+			expect(newFeed).not.toMatch(initialFeed);
 		});
 	});
 }());
