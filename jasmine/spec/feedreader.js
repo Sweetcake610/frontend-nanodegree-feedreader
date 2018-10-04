@@ -117,11 +117,9 @@ $(function() {
 		/*Have the test return to the initial feed page after test is completed
 		*/
 		afterEach(function(done) {
-			loadFeed(3, function() {
 				loadFeed(0, function() {
 					done();
 				});
-			});
 		});
 	});
 }());
