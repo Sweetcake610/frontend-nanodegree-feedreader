@@ -34,7 +34,7 @@ $(function() {
 		it('all feeds are defined and have URL', function() {
 			for(let feed of allFeeds) {
 				expect(feed.url).toBeDefined();
-				expect(feed.url).not.toBe(0);
+				expect(feed.url).not.toBe(' ');
 			}
 		});
 
@@ -46,7 +46,7 @@ $(function() {
 			for(let feedN of allFeeds) {
 				//feed = this.url;
 				expect(feedN.name).toBeDefined();
-				expect(feedN.name).not.toBe(0);
+				expect(feedN.name).not.toBe(' ');
 			}
 		});
     });
@@ -95,7 +95,7 @@ $(function() {
          * the use of Jasmine's beforeEach and asynchronous done() function.
          */
 		it('there is at least a single feed entry', function() {
-			expect(feed.getElementsByClassName('entry-link').length).toBeGreaterThan(0);
+			expect(feed.getElementsByClassName('entry').length).toBeGreaterThan(0);
 		});
 	});
 
