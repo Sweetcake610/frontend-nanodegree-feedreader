@@ -101,7 +101,7 @@ $(function() {
 
     /* TODO: Write a new test suite named "New Feed Selection" */
 	describe('New Feed Selection', function () {
-		let initialFeed;
+		let initialFeed, firstFeed, secondFeed;
 		/* TODO: Write a test that ensures when a new feed is loaded
          * by the loadFeed function that the content actually changes.
          * Remember, loadFeed() is asynchronous.
@@ -110,19 +110,30 @@ $(function() {
 			loadFeed(0, function() {
 				initialFeed = document.querySelector('.feed').innerHTML;
 				loadFeed(1, function() {
-					done();
+					firstFeed = document.querySelector('.feed').innerHTML;
 					loadFeed(2, function() {
-						done();
+						secondFeed = document.querySelector('.feed').innerHTML;
 						loadFeed(3, function() {
 						 done();
 						});
 					});
 				});
 			});	
+		
 		});
 		it('new feed is loaded and content changed', function() {
 			let newFeed = document.querySelector('.feed').innerHTML;
 			expect(newFeed).not.toMatch(initialFeed);
+			expect(newFeed).not.toMatch(firstFeed);
+			expect(newFeed).not.toMatch(secondFeed);
+		});
+		
+		afterEach(function(done) {
+			loadFeed(3, function() {
+				loadFeed(0, function() {
+					done();
+				});
+			});
 		});
 	});
 }());
